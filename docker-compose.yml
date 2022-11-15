@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  api:
+    build: .
+    restart: always
+    ports:
+      - 9000:9000
+    depends_on:
+      redis:
+        condition: service_started
+
+  redis:
+    container_name: redis
+    image: redis:7.0.5
+    restart: always
